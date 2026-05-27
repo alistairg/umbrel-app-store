@@ -4,7 +4,7 @@ name: SignalK Server
 tagline: Open source marine data server
 icon: https://avatars.githubusercontent.com/u/7126740?s=200&v=4
 category: networking
-version: "2.0.3"
+version: "2.0.4"
 port: 3000
 description: >-
   Signal K is a modern, open data format for marine use, designed to allow data

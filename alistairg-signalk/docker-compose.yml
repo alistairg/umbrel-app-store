@@ -9,6 +9,8 @@ services:
     restart: unless-stopped
     init: true
     user: "1000:1000"
+    group_add:
+      - "20"
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
     volumes:
