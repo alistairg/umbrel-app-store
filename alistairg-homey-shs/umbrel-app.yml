@@ -1,0 +1,26 @@
+manifestVersion: 1
+id: alistair-homey-shs
+name: Homey Self-Hosted Server
+tagline: Run Homey Pro on your own hardware
+icon: https://etc.athom.com/logo/transparent/1024.png
+category: automation
+version: "1.0.0"
+port: 80
+description: >-
+  Homey Self-Hosted Server lets you run the Homey smart home platform
+  on your own hardware. After installing, open the Homey mobile app,
+  add a new Homey, and select Self-Hosted Server.
+  
+  Note: This app uses host networking and privileged mode for Zigbee,
+  Z-Wave, Matter, and mDNS device discovery. Configure and control
+  via the Homey mobile app on iOS or Android.
+developer: Athom (community packaged by Alistair)
+website: https://homey.app/en-us/homey-self-hosted-server/
+submitter: Alistair Galbraith
+submission: https://github.com/<your-github-username>/umbrel-apps
+repo: https://github.com/athombv/homey-shs
+support: https://community.homey.app/
+gallery:
+  - 1.jpg
+  - 2.jpg
+releaseNotes: Initial community packaging.
