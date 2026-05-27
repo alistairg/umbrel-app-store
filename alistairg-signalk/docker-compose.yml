@@ -1,0 +1,12 @@
+services:
+  app_proxy:
+    environment:
+      APP_HOST: alistairg-signalk_server_1
+      APP_PORT: 3000
+
+  server:
+    image: signalk/signalk-server:latest
+    restart: unless-stopped
+    init: true
+    volumes:
+      - ${APP_DATA_DIR}/data:/home/node/.signalk

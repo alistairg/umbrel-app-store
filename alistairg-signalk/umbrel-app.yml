@@ -1,0 +1,24 @@
+manifestVersion: 1
+id: alistairg-signalk
+name: SignalK Server
+tagline: Open source marine data server
+icon: https://signalk.org/img/signalk-logo-image-text-256.png
+category: networking
+version: "2.0.0"
+port: 3000
+description: >-
+  Signal K is a modern, open data format for marine use, designed to allow data
+  from many sources to be combined and shared seamlessly between systems.
+
+  After installation, open the dashboard to complete initial setup: create
+  an admin user, configure connections to your NMEA sources, and install
+  plugins as needed.
+developer: SignalK Community
+website: https://signalk.org
+submitter: Alistair Galbraith
+submission: https://github.com/<your-username>/umbrel-apps
+repo: https://github.com/SignalK/signalk-server
+support: https://signalk.org/help.html
+gallery:
+  - 1.jpg
+releaseNotes: Initial community packaging.

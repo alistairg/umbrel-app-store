@@ -1,0 +1,25 @@
+manifestVersion: 1
+id: alistairg-ultrafeeder
+name: ADS-B Ultrafeeder
+tagline: Feed ADS-B data to multiple aggregators
+icon: https://raw.githubusercontent.com/sdr-enthusiasts/docker-adsb-ultrafeeder/main/banner.png
+category: networking
+version: "1.0.0"
+port: 8080
+description: >-
+  All-in-one ADS-B feeder built on readsb, tar1090, graphs1090, and mlat-client.
+  Decodes ADS-B from a USB RTL-SDR and simultaneously feeds adsb.fi, adsb.lol,
+  adsb.one, planespotters, theairtraffic, and others.
+
+  After install, open the dashboard for the tar1090 map view. Configure aggregator
+  UUIDs and feeder coordinates by editing the docker-compose.yml in this app's
+  data directory and restarting.
+developer: SDR Enthusiasts (Ramon Kolb et al.)
+website: https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder
+submitter: Alistair Galbraith
+submission: https://github.com/<your-username>/umbrel-apps
+repo: https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder
+support: https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder/discussions
+gallery:
+  - 1.jpg
+releaseNotes: Initial community packaging.
