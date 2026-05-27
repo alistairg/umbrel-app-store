@@ -12,15 +12,11 @@ services:
       - /var/log
     devices:
       - /dev/bus/usb:/dev/bus/usb
+    env_file:
+      - .env
     environment:
-      - TZ=${TZ:-UTC}
-      - READSB_LAT=${SITE_LAT}
-      - READSB_LON=${SITE_LON}
-      - READSB_ALT=${SITE_ALT_M:-50}m
       - READSB_RX_LOCATION_ACCURACY=2
       - READSB_STATS_RANGE=true
-      - UUID=${ULTRAFEEDER_UUID}
-      - ULTRAFEEDER_CONFIG=${ULTRAFEEDER_CONFIG}
       - READSB_NET_BEAST_OUTPUT_PORT=30005
       - READSB_NET_BEAST_REDUCE_INTERVAL=0.5
     volumes:
@@ -30,29 +26,14 @@ services:
   piaware:
     image: ghcr.io/sdr-enthusiasts/docker-piaware:latest
     restart: unless-stopped
-    profiles: [piaware]
     tmpfs:
       - /run:exec,size=64M
       - /var/log
+    env_file:
+      - .env
     environment:
-      - TZ=${TZ:-UTC}
-      - LAT=${SITE_LAT}
-      - LONG=${SITE_LON}
-      - FEEDER_ID=${PIAWARE_FEEDER_ID}
       - BEASTHOST=server
       - MLAT=true
       - MLATRESULTS=true
-    depends_on:
-      - server
-
-  fr24feed:
-    image: ghcr.io/sdr-enthusiasts/docker-flightradar24:latest
-    restart: unless-stopped
-    profiles: [fr24]
-    environment:
-      - TZ=${TZ:-UTC}
-      - BEASTHOST=server
-      - FR24KEY=${FR24_KEY}
-      - MLAT=yes
     depends_on:
       - server
