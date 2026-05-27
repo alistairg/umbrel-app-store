@@ -13,24 +13,46 @@ services:
     devices:
       - /dev/bus/usb:/dev/bus/usb
     environment:
-      - TZ=America/Los_Angeles
-      - READSB_LAT=47.5707     # West Seattle — replace when you move
-      - READSB_LON=-122.3868
-      - READSB_ALT=50m
+      - TZ=${TZ:-UTC}
+      - READSB_LAT=${SITE_LAT}
+      - READSB_LON=${SITE_LON}
+      - READSB_ALT=${SITE_ALT_M:-50}m
       - READSB_RX_LOCATION_ACCURACY=2
       - READSB_STATS_RANGE=true
-      - UUID=CHANGE_ME_GENERATE_A_UUID
-      - ULTRAFEEDER_CONFIG=
-          adsb,feed.adsb.fi,30004,beast_reduce_plus_out;
-          adsb,in.adsb.lol,30004,beast_reduce_plus_out;
-          adsb,feed.adsb.one,64004,beast_reduce_plus_out;
-          adsb,feed.planespotters.net,30004,beast_reduce_plus_out;
-          adsb,feed.theairtraffic.com,30004,beast_reduce_plus_out;
-          mlat,feed.adsb.fi,31090,39000;
-          mlat,in.adsb.lol,31090,39001;
-          mlat,feed.adsb.one,64006,39002;
-          mlat,mlat.planespotters.net,31090,39003;
-          mlat,feed.theairtraffic.com,31090,39004
+      - UUID=${ULTRAFEEDER_UUID}
+      - ULTRAFEEDER_CONFIG=${ULTRAFEEDER_CONFIG}
+      - READSB_NET_BEAST_OUTPUT_PORT=30005
+      - READSB_NET_BEAST_REDUCE_INTERVAL=0.5
     volumes:
       - ${APP_DATA_DIR}/globe_history:/var/globe_history
       - ${APP_DATA_DIR}/graphs1090:/var/lib/collectd
+
+  piaware:
+    image: ghcr.io/sdr-enthusiasts/docker-piaware:latest
+    restart: unless-stopped
+    profiles: [piaware]
+    tmpfs:
+      - /run:exec,size=64M
+      - /var/log
+    environment:
+      - TZ=${TZ:-UTC}
+      - LAT=${SITE_LAT}
+      - LONG=${SITE_LON}
+      - FEEDER_ID=${PIAWARE_FEEDER_ID}
+      - BEASTHOST=server
+      - MLAT=true
+      - MLATRESULTS=true
+    depends_on:
+      - server
+
+  fr24feed:
+    image: ghcr.io/sdr-enthusiasts/docker-flightradar24:latest
+    restart: unless-stopped
+    profiles: [fr24]
+    environment:
+      - TZ=${TZ:-UTC}
+      - BEASTHOST=server
+      - FR24KEY=${FR24_KEY}
+      - MLAT=yes
+    depends_on:
+      - server
