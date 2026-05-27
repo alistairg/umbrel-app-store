@@ -4,7 +4,7 @@ name: Homey Self-Hosted Server
 tagline: Run Homey Pro on your own hardware
 icon: https://etc.athom.com/logo/transparent/1024.png
 category: automation
-version: "1.0.0"
+version: "1.0.1"
 port: 80
 description: >-
   Homey Self-Hosted Server lets you run the Homey smart home platform
