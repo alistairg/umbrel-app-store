@@ -9,5 +9,7 @@ services:
     restart: unless-stopped
     init: true
     user: "1000:1000"
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
     volumes:
       - ${APP_DATA_DIR}:/home/node/.signalk
